@@ -7,6 +7,15 @@
     <groupId>yzh.web</groupId>
     <artifactId>SpringBootDemo</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+    <!-- Inherit defaults from Spring Boot,这个父pom包含了一些spring的默认配置,如果需要快速配置以spring为基础web项目可以继承
+     这个父类,如果需要自己定制则不需要集成这个父pom
+     -->
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>1.4.0.M1</version>
+    </parent>
     <!--这里使用dependencyManagement的好处是,依赖父项目的所有子项目,在依赖dependencyManagement下的依赖的的时候不需要指定版本号
         从而保持所有子项目对于依赖jar的版本一致,避免jar版本不一致导致的一些异常发生-->
     <dependencyManagement>
