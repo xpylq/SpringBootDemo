@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>yzh.web</groupId>
+    <artifactId>SpringBootDemo</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <!--这里使用dependencyManagement的好处是,依赖父项目的所有子项目,在依赖dependencyManagement下的依赖的的时候不需要指定版本号
+        从而保持所有子项目对于依赖jar的版本一致,避免jar版本不一致导致的一些异常发生-->
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <!-- Import dependency management from Spring Boot -->
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>1.4.0.M1</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+</project>
