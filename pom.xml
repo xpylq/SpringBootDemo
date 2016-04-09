@@ -8,16 +8,19 @@
     <artifactId>SpringBootDemo</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
-    <!-- Inherit defaults from Spring Boot,这个父pom包含了一些spring的默认配置,如果需要快速配置以spring为基础web项目可以继承
-     这个父类,如果需要自己定制则不需要集成这个父pom
-     -->
+    <!-- Inherit defaults from Spring Boot,The spring-boot-starter-parent is a special starter that provides useful Maven defaults.
+    It also provides a dependency-management section so that you can omit version tags for “blessed” dependencies.
+    这个父pom包含了一些spring的默认配置,如果需要快速配置以spring为基础web项目可以继承
+    这个父类,如果需要自己定制则不需要集成这个父pom-->
+    <!--
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>1.4.0.M1</version>
-    </parent>
+    </parent>-->
     <!--这里使用dependencyManagement的好处是,依赖父项目的所有子项目,在依赖dependencyManagement下的依赖的的时候不需要指定版本号
-        从而保持所有子项目对于依赖jar的版本一致,避免jar版本不一致导致的一些异常发生-->
+        从而保持所有子项目对于依赖jar的版本一致,避免jar版本不一致导致的一些异常发生
+        -->
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -30,5 +33,34 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-
+    <!--添加一个web-starter依赖:Support for full-stack web development, including Tomcat and spring-webmvc-->
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+    </dependencies>
+    <!--增加指定的maven插件-->
+    <build>
+        <plugins>
+            <!--这里增加了一个spring-boot插件,是生产环境需要的,创建一个executable jar-->
+            <!--这里因为继承了spring-boot-starter-parent,默认使用repackage模式,详细看
+            http://docs.spring.io/spring-boot/docs/1.4.0.M1/maven-plugin/usage.html-->
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+    <!--设置插件库,这里是用来下载spring.io需要的一些maven插件-->
+    <pluginRepositories>
+        <pluginRepository>
+            <id>spring-snapshots</id>
+            <url>http://repo.spring.io/snapshot</url>
+        </pluginRepository>
+        <pluginRepository>
+            <id>spring-milestones</id>
+            <url>http://repo.spring.io/milestone</url>
+        </pluginRepository>
+    </pluginRepositories>
 </project>
