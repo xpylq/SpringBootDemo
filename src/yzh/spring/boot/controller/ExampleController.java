@@ -10,7 +10,7 @@ import yzh.spring.boot.config.JDBCSettings;
  * Created by youzhihao on 16/4/3.
  */
 @RestController
-public class Example {
+public class ExampleController {
     @Autowired
     private JDBCSettings jdbcSettings;
     //这里使用占位符,获取spring-boot配置的属性值,这个属性可能是启动参数,也可能是application.properties里的属性,也可能是通过
@@ -36,7 +36,7 @@ public class Example {
     String jdbc(){
        // System.out.println(1111);
         //return jdbcSettings.getUrl();
-        return "2";
+        return "2345555";
     }
 
 }
