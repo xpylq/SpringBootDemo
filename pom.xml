@@ -35,6 +35,15 @@
     </dependencyManagement>
     <!--添加一个web-starter依赖:Support for full-stack web development, including Tomcat and spring-webmvc-->
     <dependencies>
+        <!--增加一些开发者工具jar包,如不缓存页面模板,css,自动检测classpath下的类的改变,并重启应用,这些工具包不应该出现在正式环境
+        这里需要注意,任何变化都需要你的ide去重新编译文件才能被spring-boot-devtools 识别
+        -->
+        <!--By default changing resources in /META-INF/maven, /META-INF/resources ,/resources ,/static ,/public or /templates
+        will not trigger a restart,配置文件为.spring-boot-devtools.properties,默认放在根目录文件夹下-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
