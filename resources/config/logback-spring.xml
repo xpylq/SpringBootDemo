@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--这里默认使用logback日志框架,配置文件名不能变,放在资源文件路径下就行-->
+<configuration>
+    <!--这边是根据spring.profiles.active激活哪个哪个日志文件配置-->
+    <!--spring.profiles.active=test时激活该配置-->
+    <springProfile name="test">
+        <!-- configuration to be enabled when the "staging" profile is active -->
+        <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+            <layout class="ch.qos.logback.classic.PatternLayout">
+                <Pattern>test-log:%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</Pattern>
+            </layout>
+        </appender>
+        <logger name="com.base22" level="TRACE"/>
+        <root level="info">
+            <appender-ref ref="STDOUT"/>
+        </root>
+    </springProfile>
+    <!--不加springProfile标签则指定默认的日志配置-->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <Pattern>default-log:%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</Pattern>
+        </layout>
+    </appender>
+    <logger name="com.base22" level="TRACE"/>
+    <root level="info">
+        <appender-ref ref="STDOUT"/>
+    </root>
+</configuration>
+<!--这里不对logback日志框架做详细的了解,以后用到在进行研究-->
+
+
+

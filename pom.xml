@@ -33,7 +33,6 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-    <!--添加一个web-starter依赖:Support for full-stack web development, including Tomcat and spring-webmvc-->
     <dependencies>
         <!--增加一些开发者工具jar包,如不缓存页面模板,css,自动检测classpath下的类的改变,并重启应用,这些工具包不应该出现在正式环境
         这里需要注意,任何变化都需要你的ide去重新编译文件才能被spring-boot-devtools 识别
@@ -44,10 +43,23 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
         </dependency>
+        <!--添加一个web-starter依赖:Support for full-stack web development, including Tomcat and spring-webmvc-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
+        <!--这里增加apache-shrio相关的依赖-->
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-core</artifactId>
+            <version>1.2.4</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-web</artifactId>
+            <version>1.2.4</version>
+        </dependency>
+
     </dependencies>
     <!--增加指定的maven插件-->
     <build>
