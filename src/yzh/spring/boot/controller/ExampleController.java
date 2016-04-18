@@ -8,6 +8,10 @@ import org.springframework.web.bind.annotation.RestController;
 import yzh.spring.boot.config.JDBCSettings;
 import yzh.spring.boot.model.User;
 
+import javax.jws.soap.SOAPBinding;
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Created by youzhihao on 16/4/3.
  */
@@ -31,7 +35,8 @@ public class ExampleController {
     String jdbc() {
         return jdbcSettings.getUrl();
     }
-//    这里测试@profile注解
+
+    //    这里测试@profile注解
 //    @RequestMapping("/getUser")
 //    String getUser()
 //    {
@@ -45,6 +50,17 @@ public class ExampleController {
 //        sb.append(user.getUserPassword());
 //        return sb.toString();
 //    }
+    //测试object转json,在配置里增加了一个MappingJackson2HttpMessageConverter
+    @RequestMapping("/object2Json")
+    Map<String,User> object2Json() {
+        Map<String,User> map=new HashMap<String, User>();
+        User user = new User();
+        user.setUserName("youzhihao");
+        user.setUserAccount("xpylq");
+        user.setUserPassword("123456");
+        map.put("user",user);
+        return map;
+    }
 
 
 }
