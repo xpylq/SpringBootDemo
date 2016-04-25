@@ -2,6 +2,7 @@ package yzh.spring.boot.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -18,7 +19,7 @@ import java.util.Map;
 /**
  * Created by youzhihao on 16/4/3.
  */
-@RestController
+@Controller
 public class ExampleController {
     @Autowired
     private JDBCSettings jdbcSettings;
@@ -30,6 +31,7 @@ public class ExampleController {
     private String name;
 
     @RequestMapping("/123")
+    @ResponseBody
     String world() {
         return name;
     }
@@ -37,7 +39,7 @@ public class ExampleController {
     @ResponseBody
     @RequestMapping("/jdbc")
     String jdbc() {
-        String str=new String("尤智浩");
+        String str = new String("尤智浩");
         return str;
     }
 
@@ -57,14 +59,21 @@ public class ExampleController {
 //    }
     //测试object转json,在配置里增加了一个MappingJackson2HttpMessageConverter
     @RequestMapping("/object2Json")
-    Map<String,User> object2Json() {
-        Map<String,User> map=new HashMap<String, User>();
+    @ResponseBody
+    Map<String, User> object2Json() {
+        Map<String, User> map = new HashMap<String, User>();
         User user = new User();
         user.setUserName("尤智浩");
         user.setUserAccount("xpylq");
         user.setUserPassword("123456");
-        map.put("user",user);
+        map.put("user", user);
         return map;
+    }
+
+    @RequestMapping("/addUser")
+    @ResponseBody
+    User addUser(User user) {
+        return user;
     }
 
 
