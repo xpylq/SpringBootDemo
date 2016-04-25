@@ -4,11 +4,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import yzh.spring.boot.config.JDBCSettings;
 import yzh.spring.boot.model.User;
 
 import javax.jws.soap.SOAPBinding;
+import java.io.UnsupportedEncodingException;
+import java.nio.charset.Charset;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -26,14 +29,16 @@ public class ExampleController {
     @Value("${name}")
     private String name;
 
-    @RequestMapping("/")
+    @RequestMapping("/123")
     String world() {
         return name;
     }
 
+    @ResponseBody
     @RequestMapping("/jdbc")
     String jdbc() {
-        return jdbcSettings.getUrl();
+        String str=new String("尤智浩");
+        return str;
     }
 
     //    这里测试@profile注解
@@ -55,7 +60,7 @@ public class ExampleController {
     Map<String,User> object2Json() {
         Map<String,User> map=new HashMap<String, User>();
         User user = new User();
-        user.setUserName("youzhihao");
+        user.setUserName("尤智浩");
         user.setUserAccount("xpylq");
         user.setUserPassword("123456");
         map.put("user",user);
