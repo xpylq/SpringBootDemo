@@ -1,9 +1,9 @@
-package main.java.yzh.spring.boot.config;
+package yzh.spring.boot.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
-import main.java.yzh.spring.boot.model.User;
+import yzh.spring.boot.model.User;
 
 /**
  * Created by youzhihao on 16/4/10.

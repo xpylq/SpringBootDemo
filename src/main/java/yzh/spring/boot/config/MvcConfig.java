@@ -1,4 +1,4 @@
-package main.java.yzh.spring.boot.config;
+package yzh.spring.boot.config;
 
 import org.springframework.boot.autoconfigure.web.HttpMessageConverters;
 import org.springframework.boot.context.embedded.FilterRegistrationBean;

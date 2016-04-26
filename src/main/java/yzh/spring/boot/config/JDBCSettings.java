@@ -1,4 +1,4 @@
-package main.java.yzh.spring.boot.config;
+package yzh.spring.boot.config;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;

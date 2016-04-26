@@ -1,4 +1,5 @@
-package main.java.yzh.spring.boot.controller;
+package yzh.spring.boot.controller;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -7,9 +8,9 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import main.java.yzh.spring.boot.config.JDBCSettings;
-import main.java.yzh.spring.boot.editor.CustomListPropertyEditor;
-import main.java.yzh.spring.boot.model.User;
+import yzh.spring.boot.config.JDBCSettings;
+import yzh.spring.boot.editor.CustomListPropertyEditor;
+import yzh.spring.boot.model.User;
 
 import java.util.HashMap;
 import java.util.List;
@@ -24,6 +25,7 @@ public class ExampleController {
     public void initBinder(WebDataBinder webDataBinder) {
         webDataBinder.registerCustomEditor(List.class, new CustomListPropertyEditor());
     }
+
     @Autowired
     private JDBCSettings jdbcSettings;
     //这里测试@profile注解

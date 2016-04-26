@@ -1,4 +1,4 @@
-package main.java.yzh.spring.boot.editor;
+package yzh.spring.boot.editor;
 
 import java.beans.PropertyEditorSupport;
 

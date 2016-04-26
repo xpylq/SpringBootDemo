@@ -1,4 +1,4 @@
-package main.java.yzh.spring.boot.model;
+package yzh.spring.boot.model;
 
 /**
  * Created by youzhihao on 16/4/10.

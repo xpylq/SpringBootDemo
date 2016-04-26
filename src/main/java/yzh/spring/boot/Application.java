@@ -1,4 +1,4 @@
-package main.java.yzh.spring.boot;
+package yzh.spring.boot;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
