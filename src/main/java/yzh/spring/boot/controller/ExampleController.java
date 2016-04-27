@@ -12,9 +12,7 @@ import yzh.spring.boot.config.JDBCSettings;
 import yzh.spring.boot.editor.CustomListPropertyEditor;
 import yzh.spring.boot.model.User;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by youzhihao on 16/4/3.
@@ -23,7 +21,7 @@ import java.util.Map;
 public class ExampleController {
     @InitBinder
     public void initBinder(WebDataBinder webDataBinder) {
-        webDataBinder.registerCustomEditor(List.class, new CustomListPropertyEditor());
+        webDataBinder.registerCustomEditor(Date.class, new CustomListPropertyEditor());
     }
 
     @Autowired
@@ -79,6 +77,12 @@ public class ExampleController {
     @ResponseBody
     User addUser(User user) {
         return user;
+    }
+
+    @RequestMapping("/paramsConvert2List")
+    @ResponseBody
+    public Date paramsConvert2List(Date list) {
+        return list;
     }
 
 
