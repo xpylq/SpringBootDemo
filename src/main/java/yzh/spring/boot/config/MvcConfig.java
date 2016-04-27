@@ -1,21 +1,16 @@
 package yzh.spring.boot.config;
 
-import org.springframework.boot.autoconfigure.web.HttpMessageConverters;
 import org.springframework.boot.context.embedded.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.format.FormatterRegistry;
 import org.springframework.http.converter.HttpMessageConverter;
-import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
-import org.springframework.web.bind.support.ConfigurableWebBindingInitializer;
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import yzh.spring.boot.CustomListHttpMessageConverter;
 
-import java.nio.charset.Charset;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -66,6 +61,7 @@ public class MvcConfig {
             @Override
             public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
                 converters.add(new MappingJackson2HttpMessageConverter());
+                converters.add(new CustomListHttpMessageConverter());
             }
 
             /**增加一个静态文件映射，感觉没人什么用，用默认的/**即可  */

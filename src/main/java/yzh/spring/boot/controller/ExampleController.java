@@ -6,10 +6,11 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import yzh.spring.boot.config.JDBCSettings;
-import yzh.spring.boot.editor.CustomListPropertyEditor;
+import yzh.spring.boot.editor.CustomDatePropertyEditor;
 import yzh.spring.boot.model.User;
 
 import java.util.*;
@@ -19,9 +20,11 @@ import java.util.*;
  */
 @Controller
 public class ExampleController {
+    /**自定义一个请求参数转化器,@InitBinder注解中的value值表示只对具体名字的参数对象进行转化*/
     @InitBinder
     public void initBinder(WebDataBinder webDataBinder) {
-        webDataBinder.registerCustomEditor(Date.class, new CustomListPropertyEditor());
+        /**自定义一个date类型的参数转化器*/
+        webDataBinder.registerCustomEditor(Date.class, new CustomDatePropertyEditor());
     }
 
     @Autowired
@@ -79,9 +82,15 @@ public class ExampleController {
         return user;
     }
 
+    @RequestMapping("/convertString2Date")
+    @ResponseBody
+    Date convertString2Date(Date date) {
+        return date;
+    }
+
     @RequestMapping("/paramsConvert2List")
     @ResponseBody
-    public Date paramsConvert2List(Date list) {
+    public List paramsConvert2List(@RequestBody  ArrayList<String> list) {
         return list;
     }
 
