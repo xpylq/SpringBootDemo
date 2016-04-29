@@ -1,4 +1,4 @@
-package yzh.spring.boot.init;
+package yzh.spring.boot.config.init;
 
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;

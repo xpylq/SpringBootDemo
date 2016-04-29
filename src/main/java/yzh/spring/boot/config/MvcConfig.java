@@ -9,7 +9,7 @@ import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
-import yzh.spring.boot.CustomListHttpMessageConverter;
+import yzh.spring.boot.config.converter.CustomListHttpMessageConverter;
 
 import java.util.List;
 

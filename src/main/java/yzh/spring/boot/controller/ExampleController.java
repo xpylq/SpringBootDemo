@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import yzh.spring.boot.config.JDBCSettings;
-import yzh.spring.boot.editor.CustomDatePropertyEditor;
-import yzh.spring.boot.model.User;
+import yzh.spring.boot.config.editor.CustomDatePropertyEditor;
+import yzh.spring.boot.domain.User;
 
 import java.util.*;
 
