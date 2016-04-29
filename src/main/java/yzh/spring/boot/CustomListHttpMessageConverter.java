@@ -3,20 +3,23 @@ package yzh.spring.boot;
 import org.springframework.http.HttpInputMessage;
 import org.springframework.http.HttpOutputMessage;
 import org.springframework.http.MediaType;
-import org.springframework.http.converter.*;
-import org.springframework.http.converter.json.AbstractJackson2HttpMessageConverter;
+import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.http.converter.HttpMessageNotReadableException;
+import org.springframework.http.converter.HttpMessageNotWritableException;
 
 import java.io.IOException;
-import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by hzyouzhihao on 2016/4/27.
  */
-public class CustomListHttpMessageConverter  implements HttpMessageConverter<List> {
-    public static final String mediaType="11";
+public class CustomListHttpMessageConverter implements HttpMessageConverter<List> {
     @Override
     public boolean canRead(Class<?> clazz, MediaType mediaType) {
+        if ((List.class).isAssignableFrom(clazz)) {
+            return true;
+        }
         return false;
     }
 
@@ -27,16 +30,18 @@ public class CustomListHttpMessageConverter  implements HttpMessageConverter<Lis
 
     @Override
     public List<MediaType> getSupportedMediaTypes() {
-        return null;
+        return new ArrayList<MediaType>();
     }
 
     @Override
     public List read(Class<? extends List> clazz, HttpInputMessage inputMessage) throws IOException, HttpMessageNotReadableException {
+        System.out.println(clazz);
         return null;
     }
 
     @Override
     public void write(List list, MediaType contentType, HttpOutputMessage outputMessage) throws IOException, HttpMessageNotWritableException {
+        System.out.println("write");
 
     }
 }
