@@ -20,7 +20,9 @@ import java.util.*;
  */
 @Controller
 public class ExampleController {
-    /**自定义一个请求参数转化器,@InitBinder注解中的value值表示只对具体名字的参数对象进行转化*/
+    /**
+     * 自定义一个请求参数转化器,@InitBinder注解中的value值表示只对具体名字的参数对象进行转化
+     */
     @InitBinder
     public void initBinder(WebDataBinder webDataBinder) {
         /**自定义一个date类型的参数转化器*/
@@ -89,9 +91,17 @@ public class ExampleController {
     }
 
     @RequestMapping("/paramsConvert2List")
-    @ResponseBody
-    public List paramsConvert2List(@RequestBody  ArrayList<String> list) {
+    public List paramsConvert2List(@RequestBody ArrayList<String> list) {
         return list;
+    }
+
+    /**
+     * 异常处理机制的测试
+     */
+    @RequestMapping("/exception")
+    public void exception() {
+        throw new RuntimeException();
+
     }
 
 
