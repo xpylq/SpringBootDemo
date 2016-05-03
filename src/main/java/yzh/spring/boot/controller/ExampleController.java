@@ -25,7 +25,7 @@ public class ExampleController {
      */
     @InitBinder
     public void initBinder(WebDataBinder webDataBinder) {
-        /**自定义一个date类型的参数转化器*/
+        /**自定义一个date类型的参数转化器aaa*/
         webDataBinder.registerCustomEditor(Date.class, new CustomDatePropertyEditor());
     }
 
