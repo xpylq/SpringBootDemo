@@ -1,6 +1,5 @@
-package yzh.spring.boot.editor;
+package yzh.spring.boot.config.editor;
 
-import java.beans.PropertyEditor;
 import java.beans.PropertyEditorSupport;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

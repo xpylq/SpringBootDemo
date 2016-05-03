@@ -9,7 +9,7 @@ import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
-import yzh.spring.boot.CustomListHttpMessageConverter;
+import yzh.spring.boot.config.converter.CustomListHttpMessageConverter;
 
 import java.util.List;
 
@@ -64,10 +64,12 @@ public class MvcConfig {
                 converters.add(new CustomListHttpMessageConverter());
             }
 
-            /**增加一个静态文件映射，感觉没人什么用，用默认的/**即可  */
+            /**
+             * 增加一个静态文件映射，感觉没什么用，用默认的/**即可
+             */
             @Override
             public void addResourceHandlers(ResourceHandlerRegistry registry) {
-                registry.addResourceHandler("/public1/**");
+//             registry.addResourceHandler("/public1/**").addResourceLocations();
             }
         };
         return webMvcConfigurerAdapter;

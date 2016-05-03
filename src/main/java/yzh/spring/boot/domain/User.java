@@ -1,4 +1,4 @@
-package yzh.spring.boot.model;
+package yzh.spring.boot.domain;
 
 /**
  * Created by youzhihao on 16/4/10.
