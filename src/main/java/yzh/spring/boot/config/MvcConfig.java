@@ -3,6 +3,7 @@ package yzh.spring.boot.config;
 import org.springframework.boot.context.embedded.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.ImportResource;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.filter.CharacterEncodingFilter;
@@ -18,6 +19,8 @@ import java.util.List;
  * 这个类是真正是用来尝试MVC的各种配置的
  */
 @Configuration
+/**使用@ImportResource注解来导入xml配置文件,这里导入一个spring-data-redis(sdr)配置文件*/
+@ImportResource("classpath:config/spring-data-redis.xml")
 public class MvcConfig {
 
 
