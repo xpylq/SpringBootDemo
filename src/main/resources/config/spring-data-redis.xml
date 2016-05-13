@@ -14,5 +14,41 @@
     <bean id="stringRedisTemplate" class="org.springframework.data.redis.core.StringRedisTemplate">
         <property name="connectionFactory" ref="jedisConnectionFactory"/>
     </bean>
-
+    <!--配置订阅相关-->
+    <!--定义一个RedisMessageListenerContainer,这个是sdr中专门管理订阅channel的容器,他使用一个线程去管理所有订阅通道,以及
+    一系列相关管理操作,比如没有订阅会自动释放管理线程,且是懒加载形式,只有存在订阅,才会开启线程该容器线程去管理.该容器线程分发到具体的listenter进行处理,
+    这个redis消息监听容器简化了消息订阅相关实现,如果用原生connetion去订阅一个channel,则需要开启一个新线程且这个线程则被阻塞来接受消息,
+    不能做任何其他操作,需要开发者自己进行订阅取消后线程销毁等操作,如果订阅多个线程,则需要多个新线程,开销太大. -->
+    <bean id="redisMessageListenerContainer"
+          class="org.springframework.data.redis.listener.RedisMessageListenerContainer">
+        <property name="connectionFactory" ref="jedisConnectionFactory"/>
+        <property name="messageListeners">
+            <map>
+                <!--监听channel-1接口-->
+                <entry key-ref="messageListenerAdapter">
+                    <bean class="org.springframework.data.redis.listener.ChannelTopic">
+                        <constructor-arg value="channel-1"/>
+                    </bean>
+                </entry>
+                <!--监听channel*接口-->
+                <entry key-ref="messageListenerAdapter1">
+                    <bean class="org.springframework.data.redis.listener.PatternTopic">
+                        <constructor-arg value="channel*"/>
+                    </bean>
+                </entry>
+            </map>
+        </property>
+    </bean>
+    <!--这里需要定义一个MessageListenerAdapter来代理接受消息后的处理逻辑,真正的处理逻辑由开发定义自己的类-->
+    <bean id="messageListenerAdapter" class="org.springframework.data.redis.listener.adapter.MessageListenerAdapter">
+        <constructor-arg>
+            <bean class="yzh.spring.boot.redis.CustomRedisMessageHandler"/>
+        </constructor-arg>
+    </bean>
+    <!--一个adapter只能监听一个channel-->
+    <bean id="messageListenerAdapter1" class="org.springframework.data.redis.listener.adapter.MessageListenerAdapter">
+        <constructor-arg>
+            <bean class="yzh.spring.boot.redis.CustomRedisMessageHandler"/>
+        </constructor-arg>
+    </bean>
 </beans>

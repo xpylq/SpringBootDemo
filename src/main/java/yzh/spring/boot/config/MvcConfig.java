@@ -73,7 +73,7 @@ public class MvcConfig {
              */
             @Override
             public void addResourceHandlers(ResourceHandlerRegistry registry) {
-                registry.addResourceHandler("/public1/**").addResourceLocations();
+                //registry.addResourceHandler("/public1/**").addResourceLocations();
             }
         };
         return webMvcConfigurerAdapter;

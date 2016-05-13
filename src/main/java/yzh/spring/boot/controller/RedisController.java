@@ -65,6 +65,7 @@ public class RedisController {
     @RequestMapping("/pubMessage")
     @ResponseBody
     public String pubMessage(@RequestParam String message) {
+        template.convertAndSend("channel-1", message);
         return "开一个redis-cli来接受频道消息!!!";
     }
 
