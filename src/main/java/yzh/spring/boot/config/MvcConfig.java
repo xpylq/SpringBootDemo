@@ -3,13 +3,12 @@ package yzh.spring.boot.config;
 import org.springframework.boot.context.embedded.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.ImportResource;
 import org.springframework.http.converter.HttpMessageConverter;
-import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
-import yzh.spring.boot.config.converter.CustomListHttpMessageConverter;
 
 import java.util.List;
 
@@ -18,6 +17,8 @@ import java.util.List;
  * 这个类是真正是用来尝试MVC的各种配置的
  */
 @Configuration
+/**使用@ImportResource注解来导入xml配置文件,这里导入一个spring-data-redis(sdr)配置文件*/
+@ImportResource("classpath:config/spring-data-redis.xml")
 public class MvcConfig {
 
 
@@ -60,8 +61,11 @@ public class MvcConfig {
 
             @Override
             public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
-                converters.add(new MappingJackson2HttpMessageConverter());
-                converters.add(new CustomListHttpMessageConverter());
+                //这里没必要加,因为EnableAutoConfiguration注解的配置都已经加过了这些转化器
+                //converters.add(new MappingJackson2HttpMessageConverter());
+                //增加一个自定义的StringHttpMessageConverter,因为注解自动加的默认是ISO-8859-1编码,也就是如果是以String返回到客户端的
+                //字符串会默认加上ISO-8859-1编码,中文会出现乱码,这里增加一个,用utf-8
+                //converters.add(new StringHttpMessageConverter(Charset.forName("UTF-8")));
             }
 
             /**
@@ -69,7 +73,7 @@ public class MvcConfig {
              */
             @Override
             public void addResourceHandlers(ResourceHandlerRegistry registry) {
-//             registry.addResourceHandler("/public1/**").addResourceLocations();
+                //registry.addResourceHandler("/public1/**").addResourceLocations();
             }
         };
         return webMvcConfigurerAdapter;

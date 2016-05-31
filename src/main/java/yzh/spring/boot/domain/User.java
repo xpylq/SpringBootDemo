@@ -4,8 +4,11 @@ package yzh.spring.boot.domain;
  * Created by youzhihao on 16/4/10.
  */
 public class User {
+
     private String userName;
+
     private String userAccount;
+
     private String userPassword;
 
     public String getUserName() {

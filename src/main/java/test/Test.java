@@ -1,21 +1,23 @@
 package test;
 
 
+import yzh.spring.boot.domain.User;
+
 import java.io.*;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by hzyouzhihao on 2016/4/26.
  */
 public class Test {
+
     static class Ip {
+
         int num;
+
         String ip;
 
         public String getIp() {
@@ -36,6 +38,7 @@ public class Test {
     }
 
     static class IpComparator implements Comparator<String> {
+
         public int compare(String o1, String o2) {
             int flag = 0;
             String[] o1Strs = o1.split("\\.");
@@ -56,11 +59,61 @@ public class Test {
 
 
     public static void main(String[] args) {
-        String inputFilePath = "e:\\input.txt";
-        String outputFilePath = "e:\\output.txt";
-
-        processData(inputFilePath, outputFilePath);
+//        String inputFilePath = "e:\\input.txt";
+//        String outputFilePath = "e:\\output.txt";
+//
+//        processData(inputFilePath, outputFilePath);
+        // test();
+        test1();
     }
+
+    /**
+     * 测试对LIST进行分批查询
+     */
+    public static void test() {
+        int SEARCH_LIMIT = 2;
+        List<String> goodsNos = new ArrayList<String>();
+        for (int i = 0; i < 8; i++) {
+            goodsNos.add(String.valueOf(i));
+        }
+        int fromIndex = 0;
+        int toIndex = 0;
+        while (toIndex < goodsNos.size()) {
+            List<String> subGoodsNos;
+            toIndex += SEARCH_LIMIT;
+            if (toIndex >= goodsNos.size()) {
+                subGoodsNos = goodsNos.subList(fromIndex, goodsNos.size());
+            } else {
+                subGoodsNos = goodsNos.subList(fromIndex, toIndex);
+            }
+            fromIndex = toIndex;
+            System.out.println("-----------分页-----------");
+            System.out.println(subGoodsNos);
+        }
+    }
+
+    /**
+     * 测试set的不可重复性
+     */
+    public static void test1() {
+        List<User> list = new ArrayList<User>();
+        User user1 = new User();
+        User user2 = new User();
+        user1.setUserName("youzhihao");
+        user1.setUserPassword("123");
+        user2.setUserName("youzhihao");
+        user2.setUserPassword("123");
+        list.add(user1);
+        list.add(user2);
+        Set<String> set = new HashSet<String>();
+        for (User user : list) {
+            set.add(user.getUserName() + user.getUserPassword());
+        }
+        for (String content : set) {
+            System.out.println(content);
+        }
+    }
+
 
     public static void processData(String inputFilePath, String outputFilePath) {
 
