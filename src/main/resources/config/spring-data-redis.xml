@@ -8,6 +8,9 @@
         <property name="hostName" value="${redis.hostName}"/>
         <property name="port" value="${redis.port}"/>
         <property name="usePool" value="true"/>
+        <!--在sdr1.1版本之后,默认的转化器会把byte数组转化成需要的对象,且会忽略OK等提示,如果需要获得OK等提示,需要将
+        JedisConnectionFactory中的convertPipelineAndTxResults设为false-->
+        <property name="convertPipelineAndTxResults" value="true"/>
     </bean>
     <!--增加一个专门针对string进行序列化的template,其对应的redisConnection是StringRedisConnection,该template是线程安全的
         使用StringRedisSerializer序列化类实现字符串序列化,如果使用redisTemplate类,进行定制自己的序列化方法,xml,json,object都可-->
